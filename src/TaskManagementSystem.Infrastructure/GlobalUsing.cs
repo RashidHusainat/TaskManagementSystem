@@ -1,0 +1,16 @@
+﻿global using Microsoft.EntityFrameworkCore;
+global using Microsoft.EntityFrameworkCore.Metadata.Builders;
+global using TaskManagementSystem.Domain.Enums;
+global using TaskManagementSystem.Domain.Models;
+global using TaskManagementSystem.Domain.Interfaces;
+global using TaskManagementSystem.Infrastructure.Persistence;
+global using TaskManagementSystem.Infrastructure.Persistence.Interceptors;
+global using TaskManagementSystem.Infrastructure.Persistence.Repositories;
+global using Microsoft.EntityFrameworkCore.Diagnostics;
+global using Microsoft.Extensions.Configuration;
+global using Microsoft.Extensions.DependencyInjection;
+global using TaskManagementSystem.Infrastructure.Services.Security;
+global using Microsoft.Extensions.Logging;
+global using TaskManagementSystem.Application.Core.Interfaces;
+global using TaskManagementSystem.Infrastructure.Services.Logging;
+global using TaskManagementSystem.Infrastructure.Persistence.EntityConfigurations;
