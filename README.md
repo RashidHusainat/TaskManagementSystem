@@ -15,7 +15,7 @@ RESTful API for managing tasks, built with .NET 9 and Swagger UI.
    {
      "email": "admin1@test.com",
      "password": "P@ssw0rd@2025"
-   }```
+   }
 
 2. **Enable Cookie**
    Set `UseCookies` to **true**
