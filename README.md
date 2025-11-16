@@ -18,4 +18,4 @@ RESTful API for managing tasks, built with .NET 9 and Swagger UI.
    }
 
 2. **Enable Cookie**
-   Set `UseCookies` to **true**
+   Set `UseCookies` to **true**.

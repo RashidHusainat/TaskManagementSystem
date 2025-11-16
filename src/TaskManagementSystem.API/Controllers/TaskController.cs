@@ -63,7 +63,7 @@ namespace TaskManagementSystem.API.Controllers
         [HttpGet]
         [Authorize(Roles = "Admin")]
         [SwaggerOperation(Summary = "List all tasks (Admin only)")]
-        public async Task<ActionResult> GetTasks([FromQuery]PaginationRequest paginationRequest, CancellationToken cancellationToken)
+        public async Task<ActionResult<PaginatedResult<TaskDto>>> GetTasks([FromQuery]PaginationRequest paginationRequest, CancellationToken cancellationToken)
         {
             return HandleResult(await taskService.GetTasksAsync(paginationRequest, cancellationToken));
         }

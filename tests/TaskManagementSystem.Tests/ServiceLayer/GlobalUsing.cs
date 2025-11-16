@@ -1,0 +1,9 @@
+﻿global using TaskManagementSystem.Application.Core;
+global using TaskManagementSystem.Application.Core.Interfaces;
+global using TaskManagementSystem.Application.Tasks;
+global using TaskManagementSystem.Application.Tasks.DTOs;
+global using TaskManagementSystem.Domain.Enums;
+global using TaskManagementSystem.Domain.Interfaces;
+global using TaskManagementSystem.Domain.Models;
+global using TaskManagementSystem.Infrastructure.Persistence;
+global using TaskManagementSystem.Infrastructure.Persistence.Repositories;
