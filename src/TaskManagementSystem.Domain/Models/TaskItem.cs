@@ -1,7 +1,7 @@
 ﻿
 namespace TaskManagementSystem.Domain.Models;
 
-public class TaskItem : Entity
+public class TaskItem : AuditableEntity
 {
     public string Id { get; set; } = Guid.NewGuid().ToString();
     public string Title { get; set; } = null!;

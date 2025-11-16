@@ -12,5 +12,6 @@ public class TaskDto
     public TaskState Status { get; set; } 
     public Priority Priority { get; set; }
     public string AssignedToUser { get; set; } = null!;
+    public string? CreatedBy { get; set; }
 }
 

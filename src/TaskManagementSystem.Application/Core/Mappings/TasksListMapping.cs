@@ -14,7 +14,8 @@ public class TasksListMapping : IRegister
              .Map(dest => dest.CreatedAt, src => src.CreatedAt)
              .Map(dest => dest.Priority, src => src.Priority)
              .Map(dest => dest.CompletedAt, src => src.CompletedAt)
-             .Map(dest => dest.AssignedToUser, src => src.AssignedUser!.Email);
+             .Map(dest => dest.AssignedToUser, src => src.AssignedUser!.Email)
+             .Map(dest => dest.CreatedBy, src => src.CreatedBy);
     }
 }
 

@@ -1,48 +1,37 @@
-﻿using Microsoft.EntityFrameworkCore.ChangeTracking;
-using Microsoft.EntityFrameworkCore.Diagnostics;
-using TaskManagementSystem.Application.Core.Interfaces;
+﻿namespace TaskManagementSystem.Infrastructure.Persistence.Interceptors;
 
-namespace TaskManagementSystem.Infrastructure.Persistence.Interceptors;
-
-public class AuditableEntityInterceptor(IUserAccessor userAccessor):SaveChangesInterceptor
+public class AuditableEntityInterceptor(IUserAccessor userAccessor) : SaveChangesInterceptor
 {
-    public override int SavedChanges(SaveChangesCompletedEventData eventData, int result)
+
+    public override InterceptionResult<int> SavingChanges(DbContextEventData eventData, InterceptionResult<int> result)
     {
         UpdateEntities(eventData.Context);
-        return base.SavedChanges(eventData, result);
+        return base.SavingChanges(eventData, result);
     }
 
-    public override ValueTask<int> SavedChangesAsync(SaveChangesCompletedEventData eventData, int result, CancellationToken cancellationToken = default)
+    public override ValueTask<InterceptionResult<int>> SavingChangesAsync(DbContextEventData eventData, InterceptionResult<int> result, CancellationToken cancellationToken = default)
     {
         UpdateEntities(eventData.Context);
-        return base.SavedChangesAsync(eventData, result, cancellationToken);
+        return base.SavingChangesAsync(eventData, result, cancellationToken);
     }
 
-    public void UpdateEntities(DbContext? context)
-    {
-        if (context is null) return;
 
-        foreach (var entry in context.ChangeTracker.Entries<Entity>())
+    public void UpdateEntities(DbContext? dbContext)
+    {
+        foreach (var entry in dbContext.ChangeTracker.Entries<AuditableEntity>().Where(e => e.State == EntityState.Added || e.State == EntityState.Modified))
         {
-            if (entry.State == EntityState.Added)
-            {
-                entry.Entity.CreatedBy = userAccessor.GetUserName();
-                entry.Entity.CreatedAt = DateTime.UtcNow;
-            }
-
-            if (entry.State == EntityState.Added || entry.State == EntityState.Modified || entry.HasChangedOwnedEntities())
-            {
-                entry.Entity.LastModifiedBy = userAccessor.GetUserName();
-                entry.Entity.LastModified = DateTime.UtcNow;
-            }
+                if (entry.State == EntityState.Added)
+                {
+                    entry.Entity.CreatedAt = DateTime.UtcNow;
+                    entry.Entity.CreatedBy = "System";
+                    //entry.Entity.CreatedBy = userAccessor.GetUserName();
+                }
+                else if (entry.State == EntityState.Modified)
+                {
+                    entry.Entity.LastModified = DateTime.UtcNow;
+                    entry.Entity.LastModifiedBy = "System";
+                    //entry.Entity.LastModifiedBy = userAccessor.GetUserName();
+                }
         }
     }
-}
-public static class Extensions
-{
-    public static bool HasChangedOwnedEntities(this EntityEntry entry) =>
-        entry.References.Any(r =>
-            r.TargetEntry != null &&
-            r.TargetEntry.Metadata.IsOwned() &&
-            (r.TargetEntry.State == EntityState.Added || r.TargetEntry.State == EntityState.Modified));
 }

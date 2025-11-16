@@ -1,6 +1,4 @@
-﻿
-
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 
 namespace TaskManagementSystem.Infrastructure.Persistence.Extensions;

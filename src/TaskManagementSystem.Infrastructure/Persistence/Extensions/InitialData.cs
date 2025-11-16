@@ -1,7 +1,4 @@
-﻿
-using System.Security.Cryptography;
-
-namespace TaskManagementSystem.Infrastructure.Persistence.Extensions;
+﻿namespace TaskManagementSystem.Infrastructure.Persistence.Extensions;
 
 public static class InitialData
 {

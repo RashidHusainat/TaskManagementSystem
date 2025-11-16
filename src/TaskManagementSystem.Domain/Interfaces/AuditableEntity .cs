@@ -1,7 +1,7 @@
 ﻿
 namespace TaskManagementSystem.Domain.Interfaces;
 
-public abstract class Entity
+public abstract class AuditableEntity
 {
     public DateTime? CreatedAt { get; set; }
     public string? CreatedBy { get; set; }

@@ -12,6 +12,7 @@ public class AssignedTaskDto
     public Priority Priority { get; set; }
     public TaskState Status { get; set; }
     public DateTime? CompletedAt { get; set; }
+    public string? CreatedBy { get; set; }
 
 }
 
