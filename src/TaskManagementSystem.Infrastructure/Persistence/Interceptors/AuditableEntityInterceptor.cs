@@ -18,6 +18,8 @@ public class AuditableEntityInterceptor(IUserAccessor userAccessor) : SaveChange
 
     public void UpdateEntities(DbContext? dbContext)
     {
+        if(dbContext is null) return;
+
         foreach (var entry in dbContext.ChangeTracker.Entries<AuditableEntity>().Where(e => e.State == EntityState.Added || e.State == EntityState.Modified))
         {
                 if (entry.State == EntityState.Added)
@@ -29,8 +31,7 @@ public class AuditableEntityInterceptor(IUserAccessor userAccessor) : SaveChange
                 else if (entry.State == EntityState.Modified)
                 {
                     entry.Entity.LastModified = DateTime.UtcNow;
-                    entry.Entity.LastModifiedBy = "System";
-                    //entry.Entity.LastModifiedBy = userAccessor.GetUserName();
+                    entry.Entity.LastModifiedBy = userAccessor.GetUserName();
                 }
         }
     }

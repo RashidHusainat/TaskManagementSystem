@@ -50,11 +50,22 @@ RESTful API for managing tasks, built with .NET 9 and Swagger UI.
  1. **Explore Unit Tests 🔍 :** 
  Click on Test Tab in Navbar then Test Explorer or by Right Click On **TaskManagementSystem.Tests** Project inside the ***tests*** Folder in Solution Explorer Then Inside Test Explorer Click on `TaskManagementSystem.Tests` in Test Section on the right side to list all tests. 
 
+
  2. **Run Tests 🧪 :**
+
 
   **Test Controller Action** (HTTP GET `Task/GetTasks` Action ):
   Click Run on `TaskManagementSystem.Tests.PresentationLayer` test.
 
    **Test Service Layer Method** (TaskService `CreateAsync` Method):
   Click Run on `TaskManagementSystem.Tests.ServiceLayer.Tasks` test.
+
+  ## GitHub Action (WorkFlow)
+
+   ***Run CI/CD pipline :*** 
+
+  1. Click on Actions tap in Repository/Project Page.
+  2. Then Click on any worflow listed under `All workflows`.
+  3. Then in The Right Up Corner Click on `Re-run all jobs` Button.
+  4. Minitor The Pipline Result.
 
